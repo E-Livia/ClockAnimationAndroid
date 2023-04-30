@@ -3,4 +3,7 @@
     <string name="alarmButton">Alarm</string>
     <string name="clockButton">Clock</string>
     <string name="newAlarm">Set new alarm</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
+    <string name="set">Set an alarm!</string>
 </resources>
