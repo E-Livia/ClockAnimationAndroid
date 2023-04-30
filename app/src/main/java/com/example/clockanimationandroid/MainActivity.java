@@ -35,14 +35,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        Button clockButton = findViewById(R.id.clockButton);
-        clockButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //shouldn't do anything since we already are on MainActivity page
-            }
-        });
     }
 
 }
