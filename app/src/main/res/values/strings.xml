@@ -2,4 +2,5 @@
     <string name="app_name">ClockAnimationAndroid</string>
     <string name="alarmButton">Alarm</string>
     <string name="clockButton">Clock</string>
+    <string name="newAlarm">Set new alarm</string>
 </resources>

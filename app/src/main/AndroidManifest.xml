@@ -39,6 +39,14 @@
 
         <receiver android:name=".AlarmReceiver"/>
 
+        <activity
+            android:name=".SetAlarmActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
     </application>
 
 </manifest>
