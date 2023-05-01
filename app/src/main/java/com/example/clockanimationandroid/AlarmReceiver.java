@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Build;
+import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
@@ -20,7 +21,6 @@ public class AlarmReceiver extends BroadcastReceiver {
     private static final String CHANNEL_ID ="alarm_channel";
     private static final String CHANNEL_NAME = "Alarm Channel";
     private static final String CHANNEL_DESC = "Channel for Alarm notifications";
-    private static final String PREFS_NAME = "MyPrefsFile";
     private MediaPlayer mediaPlayer;
     private long uniqueId;
 
@@ -28,9 +28,10 @@ public class AlarmReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         //using a unique id to not have more alarms at the same our, not knowing which one should start or be updated
         uniqueId=intent.getLongExtra("uniqueId",0);
-        SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        SharedPreferences prefs = context.getSharedPreferences("Alarms", Context.MODE_PRIVATE);
         int hour=prefs.getInt("ALARM HOUR"+uniqueId,0);
         int minute=prefs.getInt("ALARM MINUTE"+uniqueId,0);
+        Log.d("Alarm", "Retrieving alarm with uniqueId " + uniqueId);
 
         boolean alarmStatus = prefs.getBoolean("ALARM STATUS"+uniqueId, false);
         if(alarmStatus) {
@@ -52,8 +53,7 @@ public class AlarmReceiver extends BroadcastReceiver {
                     .setSmallIcon(R.drawable.notification_icon)
                     .setContentTitle("Alarm!")
                     .setContentText("It's time to get up! " + hour + ":" + minute)
-                    .setPriority(NotificationCompat.PRIORITY_HIGH)
-                    .setAutoCancel(false);
+                    .setPriority(NotificationCompat.PRIORITY_HIGH);
 
             // displaying the notification
             NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
@@ -84,7 +84,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         mediaPlayer.stop();
         mediaPlayer.release();
 
-        SharedPreferences.Editor editor = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE).edit();
+        SharedPreferences.Editor editor = context.getSharedPreferences("Alarms", Context.MODE_PRIVATE).edit();
         editor.putBoolean("ALARM STATUS"+uniqueId, false);
         editor.apply();
     }

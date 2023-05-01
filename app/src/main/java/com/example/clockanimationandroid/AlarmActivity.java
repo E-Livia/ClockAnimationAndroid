@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -40,7 +41,7 @@ public class AlarmActivity extends AppCompatActivity {
         alarmsList = new ArrayList<>();
 
         // Get all the alarms from SharedPreferences
-        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefsFile", Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences("Alarms", Context.MODE_PRIVATE);
         Map<String, ?> alarms = sharedPreferences.getAll();
 
         // Loop through all the alarms and add them to the list
