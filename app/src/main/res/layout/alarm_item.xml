@@ -9,14 +9,19 @@
         android:id="@+id/alarm_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="24sp"/>
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="5dp"/>
     <Switch
         android:id="@+id/switch_alarm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="On"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:textColor="@android:color/black"/>
 
 
 </LinearLayout>
