@@ -52,7 +52,7 @@ public class AlarmActivity extends AppCompatActivity {
             // check if it s time or on/off method
             if (value instanceof Integer) {
                 int intValue = (Integer) value;
-                if (key.contains("hour")) {
+                if (key.contains("HOUR")) {
                     String uniquekey = key.substring(key.lastIndexOf("_") + 1);
                     long uniqueId = Long.parseLong(uniquekey);
                     Alarm alarm = getAlarmById(uniqueId);
@@ -62,7 +62,7 @@ public class AlarmActivity extends AppCompatActivity {
                         alarm = new Alarm(uniqueId, intValue, 0, true);
                         alarmsList.add(alarm);
                     }
-                } else if (key.contains("minute")) {
+                } else if (key.contains("MINUTE")) {
                     String uniquekey = key.substring(key.lastIndexOf("_") + 1);
                     long uniqueId = Long.parseLong(uniquekey);
                     Alarm alarm = getAlarmById(uniqueId);
