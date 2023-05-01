@@ -42,7 +42,7 @@ public class AlarmListAdapter extends ArrayAdapter<Alarm> {
                 }
                 // Update the SharedPreferences
                 SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putBoolean("ALARM STATUS" + alarm.getUniqueId(), isChecked);
+                editor.putBoolean("ALARM STATUS_" + alarm.getUniqueId(), isChecked);
                 editor.apply();
             }
         });
