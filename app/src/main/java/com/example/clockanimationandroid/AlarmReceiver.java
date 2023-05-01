@@ -29,11 +29,10 @@ public class AlarmReceiver extends BroadcastReceiver {
         //using a unique id to not have more alarms at the same our, not knowing which one should start or be updated
         uniqueId=intent.getLongExtra("uniqueId",0);
         SharedPreferences prefs = context.getSharedPreferences("Alarms", Context.MODE_PRIVATE);
-        int hour=prefs.getInt("ALARM HOUR"+uniqueId,0);
-        int minute=prefs.getInt("ALARM MINUTE"+uniqueId,0);
-        Log.d("Alarm", "Retrieving alarm with uniqueId " + uniqueId);
+        int hour=prefs.getInt("ALARM HOUR_"+uniqueId,0);
+        int minute=prefs.getInt("ALARM MINUTE_"+uniqueId,0);
 
-        boolean alarmStatus = prefs.getBoolean("ALARM STATUS"+uniqueId, false);
+        boolean alarmStatus = prefs.getBoolean("ALARM STATUS_"+uniqueId, false);
         if(alarmStatus) {
             //creating the notification channel
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -85,7 +84,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         mediaPlayer.release();
 
         SharedPreferences.Editor editor = context.getSharedPreferences("Alarms", Context.MODE_PRIVATE).edit();
-        editor.putBoolean("ALARM STATUS"+uniqueId, false);
+        editor.putBoolean("ALARM STATUS_"+uniqueId, false);
         editor.apply();
     }
 

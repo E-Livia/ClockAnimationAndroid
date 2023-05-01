@@ -55,9 +55,9 @@ public class SetAlarmActivity extends AppCompatActivity {
                 // Save the new alarm to SharedPreferences using the unique identifier as the key
                 SharedPreferences sharedPreferences = getSharedPreferences("Alarms", MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putInt("ALARM HOUR" + uniqueId, hour);
-                editor.putInt("ALARM MINUTE" + uniqueId, minute);
-                editor.putBoolean("ALARM STATUS"+uniqueId,true);
+                editor.putInt("ALARM HOUR_" + uniqueId, hour);
+                editor.putInt("ALARM MINUTE_" + uniqueId, minute);
+                editor.putBoolean("ALARM STATUS_"+uniqueId,true);
                 editor.apply();
 
                 // Set the alarm
