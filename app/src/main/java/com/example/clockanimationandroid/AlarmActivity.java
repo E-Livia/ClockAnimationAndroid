@@ -28,15 +28,6 @@ public class AlarmActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alarm);
 
-        Button newAlarmButton = findViewById(R.id.newAlarmButton);
-        newAlarmButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(AlarmActivity.this, SetAlarmActivity.class);
-                startActivity(intent);
-            }
-        });
-
         alarmListView=findViewById(R.id.alarmsList);
         alarmsList = new ArrayList<>();
 

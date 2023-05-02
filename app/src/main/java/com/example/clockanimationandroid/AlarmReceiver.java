@@ -10,12 +10,14 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Build;
+import android.os.Handler;
 import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
 import java.util.Calendar;
+import java.util.concurrent.TimeUnit;
 
 public class AlarmReceiver extends BroadcastReceiver {
     private static final String CHANNEL_ID ="alarm_channel";
@@ -23,6 +25,17 @@ public class AlarmReceiver extends BroadcastReceiver {
     private static final String CHANNEL_DESC = "Channel for Alarm notifications";
     private MediaPlayer mediaPlayer;
     private long uniqueId;
+
+    private Handler mHandler = new Handler();
+    private Runnable mStopPlayerTask = new Runnable() {
+        @Override
+        public void run() {
+            if (mediaPlayer != null && mediaPlayer.isPlaying()) {
+                mediaPlayer.stop();
+                mediaPlayer.release();
+            }
+        }
+    };
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -46,6 +59,7 @@ public class AlarmReceiver extends BroadcastReceiver {
             mediaPlayer = MediaPlayer.create(context, R.raw.alarm_sound);
             mediaPlayer.setLooping(true);
             mediaPlayer.start();
+            mHandler.postDelayed(mStopPlayerTask, TimeUnit.SECONDS.toMillis(10)); // Oprirea MediaPlayer dupa 10 secunde
 
             // creating the notification
             NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
@@ -71,6 +85,8 @@ public class AlarmReceiver extends BroadcastReceiver {
             calendar.set(Calendar.MILLISECOND, 0);
 
             alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+            alarmManager.cancel(pendingIntent);
+            prefs.edit().putBoolean("ALARM STATUS_" + uniqueId, false).apply();
         }
     }
 

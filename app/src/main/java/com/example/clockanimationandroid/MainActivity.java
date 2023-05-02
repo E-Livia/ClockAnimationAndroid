@@ -32,6 +32,15 @@ public class MainActivity extends AppCompatActivity {
         alarmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent=new Intent(MainActivity.this, SetAlarmActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        Button seeAlarmsButton=findViewById(R.id.seeAlarmsButton);
+        seeAlarmsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 Intent intent=new Intent(MainActivity.this, AlarmActivity.class);
                 startActivity(intent);
             }
