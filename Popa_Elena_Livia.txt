@@ -1,0 +1,4 @@
+Student: Popa Elena Livia
+Specializarea: informatica
+Anul: 3
+Grupa: 10LF203
